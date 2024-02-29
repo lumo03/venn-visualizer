@@ -4,14 +4,14 @@
   import SetsList from "./lib/SetsList.svelte";
 </script>
 
-<main>
-  <div id="container">
-    <div id="content">
-      <Chart />
-      <SetInput />
-    </div>
-    <div id="sidebar">
-      <SetsList />
-    </div>
+<link rel="stylesheet" href="reset.css" class="style" />
+
+<main id="main-content">
+  <div id="chart">
+    <Chart />
+  </div>
+  <div id="sets-input-view">
+    <SetInput />
+    <SetsList />
   </div>
 </main>

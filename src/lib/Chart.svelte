@@ -17,7 +17,7 @@
   setsStore.subscribe((sets) => {
     if (chart != undefined) {
       chart.data = generateSetsData(sets);
-      chart?.update();
+      chart.update();
     }
   });
 
@@ -43,13 +43,6 @@
   });
 </script>
 
-<div style="width: 50vw; height: 50vh;">
+<div>
   <canvas bind:this={canvas} width={32} height={32} />
 </div>
-
-<style>
-  canvas {
-    width: 100%;
-    height: 100%;
-  }
-</style>
