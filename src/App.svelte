@@ -3,10 +3,10 @@
   import SetInput from "./lib/SetInput.svelte";
   import SetsList from "./lib/SetsList.svelte";
   import type { UniqueSetsArray } from "./types/SetTypes";
-  import { Chart as CJS } from "chart.js/auto";
+  import { Chart as ChartJs } from "chart.js/auto";
 
   let sets: UniqueSetsArray<number> = new Set();
-  let chart: CJS;
+  let chart: ChartJs;
   let chartC: Chart;
 
   function handleModifySets() {

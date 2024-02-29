@@ -1,10 +1,9 @@
 <script lang="ts">
+  import { Chart as ChartJs } from "chart.js/auto";
   import type { SetType, UniqueSetsArray } from "../types/SetTypes";
-  import Chart from "./Chart.svelte";
-  import { Chart as CJS } from "chart.js/auto";
 
   export let sets: UniqueSetsArray<number>;
-  export let chart: CJS;
+  export let chart: ChartJs;
   export let handleModifySets: () => void;
 
   let label: string;
