@@ -6,28 +6,20 @@
     type IRawSet,
   } from "chartjs-chart-venn";
   import { onMount } from "svelte";
-  import type { UniqueSetsArray } from "../types/SetTypes";
+  import { setsStore } from "../stores";
 
-  export let chart: ChartJs;
-  export let sets: UniqueSetsArray<number>;
-  export const updateChartFn = () => {
-    console.log("update0");
-    chart.data = generateSetsData(sets);
-    chart.update();
-    console.log("update2");
-  };
+  let chart: ChartJs;
 
-  function getRawSetOfSets(sets: UniqueSetsArray<number>): IRawSet<number>[] {
-    const s = Array.from(sets);
-    return s.map((st) => {
-      const valuesA = Array.from(st.values);
-      return { label: st.label, values: valuesA } as IRawSet<number>;
-    });
+  function generateSetsData(sets: IRawSet<number>[]) {
+    return extractSets(sets);
   }
 
-  function generateSetsData(sets: UniqueSetsArray<number>) {
-    return extractSets(getRawSetOfSets(sets));
-  }
+  setsStore.subscribe((sets) => {
+    if (chart != undefined) {
+      chart.data = generateSetsData(sets);
+      chart?.update();
+    }
+  });
 
   let data = [20, 100, 50, 12, 20, 130, 45];
   let labels = [
@@ -45,7 +37,7 @@
   onMount(() => {
     ctx = canvas.getContext("2d");
     chart = new VennDiagramChart(ctx!, {
-      data: generateSetsData(sets),
+      data: generateSetsData($setsStore),
       options: {},
     });
   });
