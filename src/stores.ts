@@ -12,7 +12,7 @@ export const setsStore = (() => {
         return;
       }
       let allSets: IRawSet<number>[];
-      await subscribe((sets) => (allSets = sets));
+      subscribe((sets) => (allSets = sets));
       const setIsNew =
         allSets!.find((s) => s.label == set.label) == undefined;
       if (setIsNew) {
