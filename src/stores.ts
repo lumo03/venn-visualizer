@@ -11,17 +11,15 @@ export const setsStore = (() => {
         alert("Duplicates are not allowed!");
         return;
       }
-      (async () => {
-        let allSets: IRawSet<number>[];
-        await subscribe((sets) => (allSets = sets));
-        const setIsNew =
-          allSets!.find((s) => s.label == set.label) == undefined;
-        if (setIsNew) {
-          update((allSets) => [...allSets, set]);
-        } else {
-          alert(`A Set with the label ${set.label} was already created!`);
-        }
-      })();
+      let allSets: IRawSet<number>[];
+      await subscribe((sets) => (allSets = sets));
+      const setIsNew =
+        allSets!.find((s) => s.label == set.label) == undefined;
+      if (setIsNew) {
+        update((allSets) => [...allSets, set]);
+      } else {
+        alert(`A Set with the label ${set.label} was already created!`);
+      }
     },
     removeSet: (label: string) => {
       update((sets) => [...sets.filter((set) => set.label != label)]);
